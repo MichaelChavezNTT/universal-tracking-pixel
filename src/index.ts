@@ -11,10 +11,12 @@ import { getCurrentHostName } from './HostName';
 import { getEventData } from './EventData';
 import { getFormDataFromLocalStorageIds } from './FormData';
 
-console.log("👋 Hello world")
+interface JsonPayload {
+  [key: string]: any;
+}
 
-export async function reportEvent(event, eventName, payload) {
-  const apiUrl = 'http://localhost:4000/api/events';
+export async function reportEvent(event: any, eventName: string, payload: JsonPayload) {
+  const apiUrl = 'https://eventex5.apps.nextthing.tech/api/events';
    
   const utmParams = getUTMParameters();
   const exIds = getExIdsFromCookie();
@@ -28,8 +30,6 @@ export async function reportEvent(event, eventName, payload) {
   const host_name = getCurrentHostName();
   const eventData = getEventData(event);
   const formData = getFormDataFromLocalStorageIds(localStorageIds)
-
-  console.log("👋 formData: ", formData)
 
   try {
     const response = await fetch(apiUrl, {
@@ -62,7 +62,7 @@ export async function reportEvent(event, eventName, payload) {
     });
 
     if (!response.ok) {
-      console.log("👉response: ", response)
+      console.log("ℹ️ response: ", response)
       throw new Error('Failed to send event message');
     }
 

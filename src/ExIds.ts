@@ -1,5 +1,5 @@
-export function getExIdsFromCookie(): { [key: string]: string }[] {
-  const exIds: { [key: string]: string }[] = {};
+export function getExIdsFromCookie(): { [key: string]: string } {
+  const exIds: { [key: string]: string } = {};
 
   if (typeof document !== 'undefined') {
     const cookieString = document.cookie;
