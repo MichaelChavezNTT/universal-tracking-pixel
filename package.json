@@ -1,7 +1,6 @@
 {
   "name": "universal-tracking-pixel",
-  "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "main": "dist/universal-tracking-pixel.umd.cjs",
   "scripts": {
