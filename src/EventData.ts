@@ -11,10 +11,11 @@ interface EventData {
   outerText?: string | null;
   targetId?: string | null;
   className?: string | null;
-  view?: string | null;
+  view?: string | null; // Keep this as an optional property
 }
 
 export function getEventData(event: Event): EventData {
+  // Use a type guard to check if the event is an instance of UIEvent
   const viewUrl = event instanceof UIEvent && event.view ? event.view.location.href : '';
   
   const target = event.target instanceof HTMLElement ? event.target : null;
@@ -38,7 +39,8 @@ export function getEventData(event: Event): EventData {
     outerText: target ? target.outerText : null,
     targetId: target ? target.id : null,
     className: target ? target.className : null,
-    view: event.view ? event.view.location.href : null,
+    // Access 'view' property safely after checking the event is an instance of UIEvent
+    view: event instanceof UIEvent && event.view ? event.view.location.href : null,
     ...mouseProps,
   };
 }
