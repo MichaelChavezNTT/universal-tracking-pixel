@@ -70,7 +70,7 @@ const _ = {
   WeChat: "wechat",
   "Yandex Browser": "yandex",
   Roku: "roku"
-}, S = {
+}, M = {
   amazon_silk: "Amazon Silk",
   android: "Android Browser",
   bada: "Bada",
@@ -423,7 +423,7 @@ class s {
    * @return {string}
    */
   static getBrowserTypeByAlias(e) {
-    return S[e] || "";
+    return M[e] || "";
   }
 }
 const o = /version\/(\d+(\.?_?\d+)+)/i, A = [
@@ -1283,7 +1283,7 @@ const o = /version\/(\d+(\.?_?\d+)+)/i, A = [
     }
   }
 ];
-class M {
+class v {
   /**
    * Create instance of Parser
    *
@@ -1601,7 +1601,7 @@ class R {
   static getParser(e, t = !1) {
     if (typeof e != "string")
       throw new Error("UserAgent should be a string");
-    return new M(e, t);
+    return new v(e, t);
   }
   /**
    * Creates a {@link Parser} instance and runs {@link Parser.getResult} immediately
@@ -1613,10 +1613,10 @@ class R {
    * const result = Bowser.parse(window.navigator.userAgent);
    */
   static parse(e) {
-    return new M(e).getResult();
+    return new v(e).getResult();
   }
   static get BROWSER_MAP() {
-    return S;
+    return M;
   }
   static get ENGINE_MAP() {
     return h;
@@ -1646,7 +1646,7 @@ function C() {
 function V(r) {
   return new Date(r).toLocaleString("en-US", { timeZone: "America/Los_Angeles" });
 }
-function D() {
+function I() {
   let r = "";
   return typeof document < "u" && document.title && (r = document.title), r;
 }
@@ -1654,12 +1654,12 @@ function W() {
   let r = "";
   return typeof window < "u" && window.location && window.location.href && (r = window.location.href), r;
 }
-function I() {
+function D() {
   let r = "";
   return typeof window < "u" && window.location && window.location.hostname && (r = window.location.hostname), r;
 }
 function z(r) {
-  const e = r instanceof UIEvent && r.view ? r.view.location.href : "", t = r.target;
+  const e = r instanceof UIEvent && r.view ? r.view.location.href : "", t = r.target instanceof HTMLElement ? r.target : null;
   let i = {};
   return r instanceof MouseEvent && (i = {
     clientX: r.clientX,
@@ -1669,12 +1669,14 @@ function z(r) {
   }), {
     eventType: r.type,
     eventTimeStamp: r.timeStamp,
-    srcElement: r.srcElement,
+    srcElement: r.srcElement ? r.srcElement : null,
     viewUrl: e,
     outerHTML: t ? t.outerHTML : null,
     outerText: t ? t.outerText : null,
     targetId: t ? t.id : null,
     className: t ? t.className : null,
+    // Access 'view' property safely after checking the event is an instance of UIEvent
+    view: r instanceof UIEvent && r.view ? r.view.location.href : null,
     ...i
   };
 }
@@ -1688,10 +1690,8 @@ function q(r) {
     }
   return null;
 }
-console.log("👋 Hello world");
 async function j(r, e, t) {
-  const i = "http://localhost:4000/api/events", n = k(), c = O(), u = T(), l = L(), a = C(), g = V(a), f = P(), w = D(), b = W(), y = I(), F = z(r), v = q(f);
-  console.log("👋 formData: ", v);
+  const i = "https://eventex5.apps.nextthing.tech/api/events", n = k(), c = O(), u = T(), l = L(), a = C(), g = V(a), f = P(), w = I(), b = W(), S = D(), y = z(r), F = q(f);
   try {
     const p = await fetch(i, {
       method: "POST",
@@ -1714,15 +1714,15 @@ async function j(r, e, t) {
             ...f,
             page_title: w,
             page_url: b,
-            host_name: y,
-            ...F,
-            ...v
+            host_name: S,
+            ...y,
+            ...F
           }
         }
       })
     });
     if (!p.ok)
-      throw console.log("👉response: ", p), new Error("Failed to send event message");
+      throw console.log("ℹ️ response: ", p), new Error("Failed to send event message");
     const B = await p.json();
     console.log("Event message sent successfully:", B);
   } catch (p) {

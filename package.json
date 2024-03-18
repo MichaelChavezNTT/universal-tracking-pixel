@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "typescript": "^5.2.2",
-    "vite": "^5.0.8"
+    "vite": "^5.1.6"
   },
   "dependencies": {
     "bowser": "^2.11.0"
