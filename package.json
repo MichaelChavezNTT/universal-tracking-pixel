@@ -1,8 +1,8 @@
 {
-  "name": "universal-tracking-pixel",
-  "version": "0.0.1",
+  "name": "izr3etyt1",
+  "version": "0.0.33",
   "type": "module",
-  "main": "dist/universal-tracking-pixel.umd.cjs",
+  "main": "dist/izr3etyt1.umd.cjs",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

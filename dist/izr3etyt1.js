@@ -1691,7 +1691,7 @@ function q(r) {
   return null;
 }
 async function j(r, e, t) {
-  const i = "https://eventex5.apps.nextthing.tech/api/events", n = k(), c = O(), u = T(), l = L(), a = C(), g = V(a), f = P(), w = I(), b = W(), S = D(), y = z(r), F = q(f);
+  const i = "http://localhost:4000/api/events", n = k(), c = O(), u = T(), l = L(), a = C(), g = V(a), f = P(), w = I(), b = W(), S = D(), y = z(r), F = q(f);
   try {
     const p = await fetch(i, {
       method: "POST",

@@ -16,8 +16,8 @@ interface JsonPayload {
 }
 
 export async function reportEvent(event: any, eventName: string, payload: JsonPayload) {
-  const apiUrl = 'https://eventex5.apps.nextthing.tech/api/events';
-   
+  // const apiUrl = 'https://eventex5.apps.nextthing.tech/api/events';
+  const apiUrl = 'http://localhost:4000/api/events';
   const utmParams = getUTMParameters();
   const exIds = getExIdsFromCookie();
   const systemInfo = getSystemInfo();

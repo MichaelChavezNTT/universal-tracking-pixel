@@ -4,7 +4,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: 'src/index.ts', // Change this to your library's entry point
-      name: 'myLibrary', // Replace with your library's name
+      name: 'izr3etyt1', // Replace with your library's name
     },
     rollupOptions: {
       // External dependencies that should not be bundled

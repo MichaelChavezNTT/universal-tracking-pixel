@@ -1,12 +1,3 @@
-# Universal Tracking Pixel
+# izr3etyt1
 
-How to use during development:
-```javascript
-{
-  "name": "my-app",
-  ...
-  "dependencies": {
-    "universal-tracking-pixel": "../universal-tracking-pixel"
-  }
-}
-```
+Not intended for public use. 
